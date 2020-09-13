@@ -1,0 +1,36 @@
+#input type : list or tuple
+output=[]
+yn=[]
+
+def init(input, yn):
+    lst=list(set((input)))
+    for i in range(len(lst)):
+        yn.insert(i, 0)
+    return lst
+
+def combination(depth):
+    length=len(lst)
+    
+    temp=[]    
+    if(length==depth):
+        for i in range(length):
+            if(yn[i]==1):
+                temp.append(lst[i])
+        output.append(temp)
+        return
+    
+    yn[depth]=1
+    combination(depth+1)
+    yn[depth]=0
+    combination(depth+1)
+
+def result():
+    output.sort()
+    del(output[0])
+    print(output)
+
+
+    
+lst=init(input, yn)
+combination(0)
+result()
